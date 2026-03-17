@@ -1,0 +1,270 @@
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-nav: 800px;
+}
+
+@layer utilities {
+  .bg-navy {
+    background-color: #0A122A;
+  }
+
+  .bg-navyLight {
+    background-color: #0c1a42;
+  }
+
+  .text-neonBlue {
+    color: #38BDF8;
+  }
+
+  .hover\:shadow-neonBlue:hover {
+    box-shadow: 0 0 8px #38BDF8;
+  }
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px #38BDF8;
+  }
+
+  50% {
+    box-shadow: 0 0 20px #38BDF8;
+  }
+}
+
+.hover\:shadow-neonBlue:hover {
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(-10px);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s infinite ease-in-out;
+}
+
+#hero-parallax {
+  will-change: transform;
+}
+
+#hero-parallax img {
+  filter: contrast(1.05) saturate(1.1);
+}
+
+@keyframes glow-card {
+
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.4;
+  }
+
+  25% {
+    transform: translate(5px, 5px) scale(1.1);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform: translate(-5px, 5px) scale(1.05);
+    opacity: 0.35;
+  }
+
+  75% {
+    transform: translate(5px, -5px) scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+.animate-glow-card {
+  animation: glow-card 6s infinite ease-in-out;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(270deg, #0f2568, #16409c, #990679);
+  background-size: 300% 300%;
+  animation: gradient-move 10s linear infinite;
+  color: white;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.8s ease-out both;
+}
+
+@keyframes cardEnter {
+  from {
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    transform: translateY(30px) scale(0.96);
+  }
+}
+
+.animate-card-enter {
+  animation: cardEnter 0.7s ease-out both;
+}
+
+.animate-card-enter:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.animate-card-enter:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.animate-card-enter:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.animate-card-enter:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.animate-card-enter:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.animate-card-enter:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+.glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(120deg, transparent 30%, rgba(56, 189, 248, 0.12), transparent 70%);
+  animation: glassGlow 6s linear infinite;
+}
+
+@keyframes glassGlow {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(50%) translateY(50%) rotate(360deg);
+  }
+}
+
+@keyframes ctaPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-cta-pop {
+  animation: ctaPop 0.6s ease-out 0.6s both;
+}
+
+.hero-image {
+  animation: heroReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards, heroFloat 10s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+
+  0%,
+  100% {
+    transform: scale(1.05) translateY(0);
+  }
+
+  50% {
+    transform: scale(1.05) translateY(-10px);
+  }
+}
+
+@keyframes neonPulse {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.6));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 40px rgba(56, 189, 248, 1));
+  }
+}
+
+.neon-icon {
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+
+/* ==================================
+   ULTRA-SPECIFIC RESPONSIVE NAVBAR
+   ================================== */
+
+/* Mobile view (Default) 
+nav div.desktop-nav {
+  display: none !important;
+}
+
+nav div.mobile-nav-toggle {
+  display: flex !important;
+}
+
+/* Desktop view (800px and up) 
+@media screen and (min-width: 800px) {
+  nav div.desktop-nav {
+    display: flex !important;
+  }
+
+  nav div.mobile-nav-toggle,
+  nav div.mobile-nav-menu,
+  nav div.mobile-backdrop {
+    display: none !important;
+  }
+}
